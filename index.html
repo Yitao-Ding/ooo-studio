@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OOO Studio</title>
+<meta name="description" content="OOO Studio is a one-person studio in Tokyo. Small AI tools built with Claude, and photo and video under Yitao Film.">
+<meta property="og:title" content="OOO Studio">
+<meta property="og:description" content="Small tools, made by someone who uses them. Tokyo.">
+<meta property="og:image" content="https://ooo-studio.jp/img/film1.jpg">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#121211">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23e9e5dc' stroke-width='1.6'/%3E%3Ccircle cx='15' cy='5' r='4' fill='none' stroke='%23e9e5dc' stroke-width='1.6'/%3E%3Ccircle cx='25' cy='5' r='4' fill='%23ff5b39'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#121211;--fg:#e9e5dc;--mute:#8e8a82;--line:rgba(233,229,220,.13);--acc:#ff5b39;--lab:38px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--fg)}
+body{font:15px/1.6 "Helvetica Neue",Helvetica,Arial,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mono,.bar,.tl,.kick,.st,dl,.cliphead,.edl{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+a{color:inherit;text-underline-offset:3px}
+.bar{position:fixed;top:0;left:0;right:0;height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--line);background:var(--bg);z-index:10;font-size:12px}
+.bar .name{font-weight:500;letter-spacing:.02em}
+.bar .seq{color:var(--mute);margin-left:10px}
+.bar .tc{color:var(--acc);font-variant-numeric:tabular-nums}
+#scrub{position:relative}
+.stage{padding-top:40px}
+.js .stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column}
+.monitor{flex:1;min-height:0;display:flex;flex-direction:column;padding:18px 16px 10px}
+.frame{flex:1;min-height:0;position:relative;border:1px solid var(--line)}
+.pane{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center;padding:36px 40px;border-bottom:1px solid var(--line)}
+.js .pane{display:none;position:absolute;inset:0;border:0}
+.js .pane.on{display:grid}
+.pane.text-only{grid-template-columns:minmax(0,1fr)}
+.kick{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+.st{color:var(--acc);margin-left:10px}
+.pane h1,.pane h2{font-weight:500;letter-spacing:-.015em;line-height:1.08;margin-bottom:18px}
+.pane h1{font-size:clamp(30px,4.6vw,64px);max-width:16ch}
+.pane h2{font-size:clamp(28px,3.6vw,50px)}
+.pane p{max-width:54ch;margin-bottom:14px}
+.pane p.small{color:var(--mute);font-size:14px}
+dl{font-size:12px;line-height:1.5;display:grid;grid-template-columns:64px 1fr;gap:4px 12px;margin-top:20px;max-width:60ch}
+dt{color:var(--mute)}
+.media{height:100%;min-height:0;display:flex;align-items:center;justify-content:center;gap:10px}
+.media img{display:block;max-width:100%;max-height:100%;min-height:0;object-fit:contain}
+.media.pair img{max-width:49%}
+.media .icon{width:150px;border-radius:34px}
+.offline{width:100%;aspect-ratio:16/9;max-height:100%;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:12px}
+.cliphead{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--mute);padding-top:8px;white-space:nowrap;overflow:hidden}
+.cliphead span:first-child{color:var(--fg)}
+.tl,.cliphead{display:none}
+.js .tl{display:block}.js .cliphead{display:flex}
+.tl{flex:none;border-top:1px solid var(--line);padding:8px 16px 14px;font-size:11px;user-select:none;-webkit-user-select:none}
+.tlhead{display:flex;justify-content:space-between;color:var(--mute);margin-bottom:6px}
+.tlhead .date{color:var(--fg);font-variant-numeric:tabular-nums}
+.grid{position:relative}
+.row{display:flex;height:30px;border-bottom:1px solid var(--line)}
+.row.ruler{height:22px}
+.row .lab{width:var(--lab);flex:none;color:var(--mute);display:flex;align-items:center}
+.lane{position:relative;flex:1}
+.tick{position:absolute;top:0;bottom:0;border-left:1px solid var(--line);padding-left:4px;color:var(--mute);font-size:10px;line-height:22px}
+.clip{position:absolute;top:4px;bottom:4px;min-width:7px;border:1px solid rgba(233,229,220,.32);background:rgba(233,229,220,.07);cursor:pointer;overflow:hidden;padding:0 6px;line-height:20px;white-space:nowrap;text-overflow:clip;color:var(--fg);font:inherit;text-align:left}
+.clip.film{background-color:#1d1c1a;background-size:auto 100%;background-repeat:repeat-x;color:#fff}
+.clip.film span{background:rgba(18,18,17,.7);padding:1px 4px}
+.clip.on{border-color:var(--fg);background-color:rgba(233,229,220,.18)}
+.clip.film.on{outline:1px solid var(--fg)}
+.clip.tight span{display:none}
+.ph{position:absolute;top:0;bottom:0;width:1px;background:var(--acc);pointer-events:none;left:var(--lab)}
+.ph::before{content:"";position:absolute;top:0;left:-5px;width:11px;height:12px;background:var(--acc);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%)}
+.below{max-width:1040px;margin:0 auto;padding:88px 16px 0}
+.below h3{font-size:11px;font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-bottom:18px}
+.edl{font-size:12px;border-top:1px solid var(--line)}
+.edl .r{display:grid;grid-template-columns:44px 34px minmax(0,1fr) 84px 84px;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
+.edl .r.h{color:var(--mute)}
+.edl .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.about p{max-width:52ch;margin-bottom:14px}
+footer{max-width:1040px;margin:88px auto 0;padding:18px 16px 32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:12px;color:var(--mute)}
+@media (max-width:760px){
+  :root{--lab:28px}
+  .bar .seq{display:none}
+  .monitor{padding:12px 12px 6px}
+  .pane,.js .pane.on{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:14px;padding:16px;align-items:start}
+  .pane.text-only,.js .pane.text-only.on{grid-template-rows:auto;align-content:center}
+  .pane .media{order:-1;max-height:30svh}
+  .media .icon{width:96px;border-radius:22px}
+  .pane h1{font-size:30px}.pane h2{font-size:26px;margin-bottom:10px}
+  .pane p{font-size:14px;line-height:1.55;margin-bottom:8px}
+  dl{grid-template-columns:52px 1fr;font-size:11px;margin-top:10px}
+  .kick{margin-bottom:8px}
+  .tl{padding:6px 12px 10px}
+  .row{height:24px}.clip{line-height:14px;font-size:10px;top:3px;bottom:3px}
+  .edl .r{grid-template-columns:34px 26px minmax(0,1fr) 70px;font-size:11px}
+  .edl .r .out{display:none}
+  .about{grid-template-columns:minmax(0,1fr);gap:0}
+}
+@media (max-width:760px) and (max-height:700px){ .pane dl{display:none} }
+@media (hover:none){.keys{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div><span class="name">OOO Studio</span><span class="seq">seq_01 / Tokyo</span></div>
+  <div class="tc" id="tc">00:00:00:00</div>
+</header>
+
+<main id="scrub">
+<div class="stage">
+<section class="monitor">
+<div class="frame">
+
+<article class="pane text-only" data-in="2026-04-15" data-out="2026-04-21">
+  <div class="txt">
+    <div class="kick">OOO Studio, Tokyo</div>
+    <h1>Small tools, made by someone who uses them.</h1>
+    <p>I'm Yitao Ding. I film dance and music, and I study law. Most of the tools here started because something in that life was slow, so I built a fix with Claude and kept using it.</p>
+    <p class="small">This page is laid out like an edit. Scroll to move the playhead<span class="keys">, or press L to play</span>.</p>
+  </div>
+</article>
+
+<article class="pane" data-track="V2" data-name="yitao_film" data-in="2026-04-22" data-out="2026-05-15" data-thumb="img/film1.jpg">
+  <div class="txt">
+    <div class="kick">Yitao Film<span class="st">Photo and video</span></div>
+    <h2>Yitao Film</h2>
+    <p>The other half of the studio. Dance films, music videos and artist photos for the dance team Hi,Me:), and documentary work for an NPO. I shoot on an FX30 and an R5 and grade in DaVinci Resolve.</p>
+    <p><a href="https://yitao-ding.github.io/">Full portfolio</a> &nbsp;/&nbsp; <a href="https://www.instagram.com/yitao_film/">@yitao_film</a></p>
+  </div>
+  <div class="media pair"><img src="img/film1.jpg" alt="Artist photo for Hi,Me:), shot at night by a payphone"><img src="img/film3.jpg" alt="Two dancers on a rooftop in daylight"></div>
+</article>
+
+<article class="pane" data-track="V1" data-name="lecture_hub" data-in="2026-05-17" data-out="2026-07-06">
+  <div class="txt">
+    <div class="kick">2026.05<span class="st">Personal use</span></div>
+    <h2>Lecture Hub</h2>
+    <p>A Notion-style workspace for my university classes. Lecture notes, tasks and a chat in one place. Recordings are transcribed, every page is searchable by meaning, and new lecture pages set themselves up each week.</p>
+    <dl><dt>Claude</dt><dd>Claude API: chat over my notes, summaries, and pulling tasks out of lectures.</dd><dt>Stack</dt><dd>Next.js, Postgres + pgvector, TipTap, Whisper, Vercel</dd></dl>
+  </div>
+  <div class="media"><div class="offline">/tasks &nbsp; /p/[id] &nbsp; /search &nbsp; /chat</div></div>
+</article>
+
+<article class="pane" data-track="V1" data-name="vidkit" data-in="2026-05-18" data-out="2026-05-25">
+  <div class="txt">
+    <div class="kick">2026.05<span class="st">In use</span></div>
+    <h2>vidkit</h2>
+    <p>A command-line tool that turns a video into something Claude Code can read: transcript with speakers, scene cuts, frames and chapters. Five modes (dance, lecture, autocut, tighten, tutorial), with FCPXML export for Final Cut Pro.</p>
+    <dl><dt>Claude</dt><dd>The analysis runs inside a Claude Code session. Claude Code also wrote most of the tool.</dd><dt>Stack</dt><dd>Python, MLX-Whisper, pyannote, ffmpeg</dd></dl>
+  </div>
+  <div class="media"><div class="offline">$ vidkit lecture &lt;url&gt; --speakers 2</div></div>
+</article>
+
+<article class="pane" data-track="V1" data-name="project_agent" data-in="2026-05-23" data-out="2026-10-07" data-ph="2026-08-31">
+  <div class="txt">
+    <div class="kick">2026.05 to now<span class="st">TestFlight, App Store prep</span></div>
+    <h2>Project Agent</h2>
+    <p>A team app for student groups: circles, seminars, volunteer teams. Work is organised as group, project, team and task, and when a project ends it stays as a record instead of sinking in a chat log. iOS, Japan first.</p>
+    <dl><dt>Claude</dt><dd>Built by a set of Claude Code agents with separate jobs (planning, building, QA, design review) that check each other's work.</dd><dt>Next</dt><dd>Claude API inside the app, starting with a written recap of each project when it closes.</dd><dt>Stack</dt><dd>Expo / React Native, Supabase</dd></dl>
+  </div>
+  <div class="media"><img src="img/paa.jpg" alt="Project Agent home screen showing today's tasks"></div>
+</article>
+
+<article class="pane" data-track="V1" data-name="bitaw" data-in="2026-09-01" data-out="2026-09-07">
+  <div class="txt">
+    <div class="kick">2026.09<span class="st">TestFlight, 3 users</span></div>
+    <h2>Bitaw</h2>
+    <p>A Cebuano speaking app for me and two friends before a trip to Cebu. Type or say a sentence in Japanese and get natural Cebuano back, with its structure, pronunciation and audio. Pronunciation is scored on the phone.</p>
+    <dl><dt>Claude</dt><dd>Lessons and conversation practice are generated by Claude, today through a small relay on my Mac.</dd><dt>Next</dt><dd>Moving to the Claude API, so practice works without my Mac switched on.</dd><dt>Stack</dt><dd>Swift, WhisperKit, ElevenLabs, Supabase</dd></dl>
+  </div>
+  <div class="media"><img class="icon" src="img/bitaw.png" alt="Bitaw app icon"></div>
+</article>
+
+<article class="pane text-only" data-track="V2" data-name="manila_cebu" data-in="2026-09-23" data-out="2026-10-03" data-thumb="img/film2.jpg">
+  <div class="txt">
+    <div class="kick">2026.09<span class="st">In the edit</span></div>
+    <h2>Manila and Cebu</h2>
+    <p>Eleven days in the Philippines with a volunteer group and a dance team: workshops at schools and a children's home, a slum visit, and a lot of dance. The documentary is being cut now.</p>
+  </div>
+</article>
+
+<article class="pane" data-track="V1" data-name="news_globe" data-in="2026-10-05" data-out="2026-10-06">
+  <div class="txt">
+    <div class="kick">2026.10<span class="st">Paused</span></div>
+    <h2>News Globe</h2>
+    <p>A 3D globe that pins the day's world news where it happened, ordered like a newspaper front page. Map and satellite views, place names that stay sharp at any zoom. I stopped after two days when I found several tools doing the same thing.</p>
+    <dl><dt>Claude</dt><dd>Claude reads the RSS feeds, writes the summaries, sorts each story and works out where it happened.</dd><dt>Stack</dt><dd>CesiumJS, Natural Earth, Vite</dd></dl>
+  </div>
+  <div class="media"><img src="img/globe.jpg" alt="News Globe in satellite view over northern Iran"></div>
+</article>
+
+<article class="pane text-only" data-in="2026-10-07" data-out="2026-10-15">
+  <div class="txt">
+    <div class="kick">End of sequence</div>
+    <h2>That's the cut so far.</h2>
+    <p>Everything here is built and kept running by one person. New work gets added to the end of the timeline.</p>
+    <p><a href="mailto:yitao-ding@ooo-studio.jp">yitao-ding@ooo-studio.jp</a></p>
+  </div>
+</article>
+
+</div>
+<div class="cliphead"><span id="cn">intro</span><span id="io"></span></div>
+</section>
+
+<section class="tl" aria-hidden="true">
+  <div class="tlhead"><span class="date" id="date">26.04.15</span><span><span class="keys">J K L &nbsp;/&nbsp; </span>scroll</span></div>
+  <div class="grid" id="grid">
+    <div class="row ruler"><div class="lab"></div><div class="lane" id="ruler"></div></div>
+    <div id="rows"></div>
+    <div class="ph" id="ph"></div>
+  </div>
+</section>
+</div>
+</main>
+
+<section class="below">
+  <h3>Edit decision list</h3>
+  <div class="edl" id="edl"></div>
+</section>
+
+<section class="below about">
+  <div>
+    <h3>About</h3>
+    <p>OOO Studio is a one-person studio in Tokyo, run by Yitao Ding. It holds two things: the small AI tools listed above, and Yitao Film, the photo and video work.</p>
+    <p>I work in Japanese, Chinese and English.</p>
+  </div>
+  <div>
+    <h3>Contact</h3>
+    <p><a href="mailto:yitao-ding@ooo-studio.jp">yitao-ding@ooo-studio.jp</a></p>
+    <p><a href="https://www.instagram.com/yitao_film/">Instagram @yitao_film</a></p>
+  </div>
+</section>
+
+<footer><span>OOO Studio</span><span>Tokyo, 2026</span></footer>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var D=function(s){return Date.parse(s+'T00:00:00Z')};
+  var T0=D('2026-04-15'), T1=D('2026-10-15'), FPS=24, LEN=180*FPS;
+  var pct=function(t){return Math.max(0,Math.min(1,(t-T0)/(T1-T0)))};
+  var pad=function(n,w){n=String(n);while(n.length<(w||2))n='0'+n;return n};
+  var ymd=function(t){var d=new Date(t);return pad(d.getUTCFullYear()%100)+'.'+pad(d.getUTCMonth()+1)+'.'+pad(d.getUTCDate())};
+  var panes=[].slice.call(document.querySelectorAll('.pane'));
+  var scrub=document.getElementById('scrub'), ph=document.getElementById('ph'), grid=document.getElementById('grid');
+  var tc=document.getElementById('tc'), dateEl=document.getElementById('date'), cn=document.getElementById('cn'), io=document.getElementById('io');
+  var N=panes.length, cur=-1, clips=[];
+
+  var ruler=document.getElementById('ruler');
+  ['APR','MAY','JUN','JUL','AUG','SEP','OCT'].forEach(function(m,i){
+    var t=D('2026-'+pad(i+4)+'-01'); if(t<T0)t=T0;
+    var k=document.createElement('div'); k.className='tick'; k.style.left=(pct(t)*100)+'%'; k.textContent=m; ruler.appendChild(k);
+  });
+
+  var stops=panes.map(function(p){
+    var a=D(p.dataset.in), b=D(p.dataset.out);
+    return {a:a,b:b,e:p.dataset.ph?D(p.dataset.ph):b,name:p.dataset.name||'',kind:p.dataset.track||''};
+  });
+  var ends=[];
+  stops.forEach(function(s){
+    if(s.kind==='V1'){var l=0;while(ends[l]!==undefined&&ends[l]>s.a)l++;ends[l]=s.b;s.lane=l}
+  });
+  var nt=ends.length, rowsEl=document.getElementById('rows');
+  var mk=function(id,lab){rowsEl.insertAdjacentHTML('beforeend','<div class="row"><div class="lab">'+lab+'</div><div class="lane" id="'+id+'"></div></div>')};
+  mk('film','V'+(nt+1)); for(var l=nt-1;l>=0;l--)mk('t'+l,'V'+(l+1));
+  stops.forEach(function(s){s.track=s.kind==='V2'?'V'+(nt+1):s.kind?'V'+(s.lane+1):''});
+  stops.forEach(function(s,i){
+    var p=panes[i];
+    if(s.kind){
+      var c=document.createElement('button'); c.type='button';
+      c.className='clip'+(s.kind==='V2'?' film':'');
+      c.style.left=(pct(s.a)*100)+'%'; c.style.width=((pct(s.b)-pct(s.a))*100)+'%';
+      if(p.dataset.thumb) c.style.backgroundImage='url('+p.dataset.thumb+')';
+      c.innerHTML='<span>'+s.name+'</span>'; c.title=s.name;
+      c.addEventListener('click',function(){go(i)});
+      document.getElementById(s.kind==='V2'?'film':'t'+s.lane).appendChild(c); s.clip=c; clips.push(c);
+    }
+  });
+
+  var edl=document.getElementById('edl'), n=0;
+  edl.innerHTML='<div class="r h"><span>#</span><span>TRK</span><span>CLIP</span><span>IN</span><span class="out">OUT</span></div>';
+  stops.forEach(function(s){ if(!s.track)return; n++;
+    edl.insertAdjacentHTML('beforeend','<div class="r"><span>'+pad(n,3)+'</span><span>'+s.track+'</span><span class="nm">'+s.name.toUpperCase()+'</span><span>'+ymd(s.a)+'</span><span class="out">'+(s.name==='project_agent'?'--':ymd(s.b))+'</span></div>');
+  });
+
+  function tight(){clips.forEach(function(c){c.classList.toggle('tight',c.offsetWidth<64)})}
+  function range(){var top=scrub.offsetTop, h=scrub.offsetHeight-innerHeight;return {top:top,h:Math.max(1,h)}}
+  function size(){scrub.style.height=(N*75+100)+'vh'; tight(); draw()}
+  function ease(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
+
+  function draw(){
+    var r=range(), p=Math.max(0,Math.min(1,(scrollY-r.top)/r.h));
+    var x=p*N, i=Math.min(N-1,Math.floor(x)), loc=Math.min(1,x-i), s=stops[i];
+    var t=s.a+(s.e-s.a)*ease(loc), q=pct(t);
+    ph.style.left='calc(var(--lab) + '+(q*100)+'% - '+q+' * var(--lab))';
+    var f=Math.round(p*LEN); tc.textContent=pad(Math.floor(f/(3600*FPS)))+':'+pad(Math.floor(f/(60*FPS))%60)+':'+pad(Math.floor(f/FPS)%60)+':'+pad(f%FPS);
+    dateEl.textContent=ymd(t);
+    if(i!==cur){
+      if(cur>=0){panes[cur].classList.remove('on'); if(stops[cur].clip)stops[cur].clip.classList.remove('on')}
+      panes[i].classList.add('on'); if(s.clip)s.clip.classList.add('on'); cur=i;
+      cn.textContent=s.name||(i===0?'intro':'end');
+      io.textContent=s.track?s.track+'  IN '+ymd(s.a)+'  OUT '+(s.name==='project_agent'?'--':ymd(s.b)):'';
+    }
+  }
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(i){var r=range();stop();scrollTo({top:r.top+(i+.08)/N*r.h,behavior:reduce?'auto':'smooth'})}
+
+  var dir=0, raf=0, speed=0;
+  function loop(){speed=Math.min(speed+.25,7);scrollBy(0,dir*speed);var r=range();
+    if((dir>0&&scrollY>=r.top+r.h-1)||(dir<0&&scrollY<=r.top)){stop();return} raf=requestAnimationFrame(loop)}
+  function play(d){if(dir===d)return;stop();dir=d;speed=1;raf=requestAnimationFrame(loop)}
+  function stop(){dir=0;cancelAnimationFrame(raf)}
+  addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return; var k=e.key.toLowerCase();
+    if(k==='l')play(1); else if(k==='j')play(-1); else if(k==='k'||k===' '&&dir){e.preventDefault();stop()}
+    else if(k==='arrowright'){e.preventDefault();go(Math.min(N-1,cur+1))}
+    else if(k==='arrowleft'){e.preventDefault();go(Math.max(0,cur-1))}
+  });
+  ['wheel','touchstart','mousedown'].forEach(function(ev){addEventListener(ev,function(){if(dir)stop()},{passive:true})});
+  addEventListener('scroll',function(){requestAnimationFrame(draw)},{passive:true});
+  addEventListener('resize',size);
+  size();
+  var h=location.hash.slice(1); if(h){stops.forEach(function(s,i){if(s.name===h){var r=range();scrollTo(0,r.top+(i+.3)/N*r.h);draw()}})}
+  stops.forEach(function(s,i){if(s.clip)s.clip.addEventListener('click',function(){history.replaceState(null,'','#'+s.name)})});
+})();
+</script>
+</body>
+</html>

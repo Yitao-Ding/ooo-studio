@@ -89,7 +89,7 @@ img,video{display:block;max-width:100%}
 .work td{padding:14px 16px 14px 0;border-top:1px solid var(--line);vertical-align:top}
 .work td:first-child{width:72px;font-variant-numeric:tabular-nums;color:var(--grey)}
 .work td:nth-child(2){width:84px}
-.work td:last-child{width:130px;padding-right:0}
+
 
 .about{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
 .about figure{border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--panel)}
@@ -112,7 +112,6 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
   .paa .shot{aspect-ratio:1/1}
   .more{grid-template-columns:minmax(0,1fr)}
   .work td:nth-child(2),.work th:nth-child(2){display:none}
-  .work td:last-child{width:auto}
   .about figure{max-width:320px}
 }
 @media (max-width:480px){.nav{font-size:15px}.nav ul{gap:12px}}
@@ -154,14 +153,14 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
       <h3>Project Agent</h3>
       <p class="one">A team app for student groups.</p>
       <p>Circles, seminars and volunteer teams run several projects at once, and the work gets lost in group chats. Project Agent keeps it as group, project, team and task, and keeps a record once a project ends.</p>
-      <dl><dt>Claude</dt><dd>Built by Claude Code agents with separate jobs: planning, building, QA and design review. Next: Claude writes the project recap when a project closes.</dd><dt>Stack</dt><dd>Expo, React Native, Supabase</dd><dt>Status</dt><dd><span class="status live">TestFlight, App Store submission in progress</span></dd></dl>
+      <dl><dt>Claude</dt><dd>Built by Claude Code agents with separate jobs: planning, building, QA and design review. Next: Claude writes the project recap when a project closes.</dd><dt>Stack</dt><dd>Expo, React Native, Supabase</dd></dl>
     </article>
     <article class="app globe">
       <div class="shot"><img src="img/globe.jpg" alt="News Globe in satellite view with place names over the Middle East" loading="lazy"></div>
       <h3>News Globe</h3>
       <p class="one">The day's world news, placed where it happened.</p>
       <p>A 3D globe with the day's stories pinned to their locations and ranked like a front page. Switch between map and satellite, zoom in, and read the summary next to the place.</p>
-      <dl><dt>Claude</dt><dd>Reads the RSS feeds, writes the summaries, sorts each story and works out where it happened.</dd><dt>Stack</dt><dd>CesiumJS, Natural Earth, Vite</dd><dt>Status</dt><dd><span class="status">In development</span></dd></dl>
+      <dl><dt>Claude</dt><dd>Reads the RSS feeds, writes the summaries, sorts each story and works out where it happened.</dd><dt>Stack</dt><dd>CesiumJS, Natural Earth, Vite</dd></dl>
     </article>
     <div class="more">
       <article class="app">
@@ -169,19 +168,19 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
         <h3>Bitaw</h3>
         <p class="one">Cebuano speaking practice.</p>
         <p>Type or say a sentence in Japanese and get natural Cebuano back, with its structure, pronunciation and audio. Pronunciation is scored on the phone.</p>
-        <dl><dt>Claude</dt><dd>Generates lessons and runs conversation practice. Moving to the Claude API next.</dd><dt>Status</dt><dd><span class="status live">TestFlight</span></dd></dl>
+        <dl><dt>Claude</dt><dd>Generates lessons and runs conversation practice. Moving to the Claude API next.</dd></dl>
       </article>
       <article class="app">
         <h3>Lecture Hub</h3>
         <p class="one">A notebook for university lectures.</p>
         <p>Notes, tasks and recordings for each class in one place, with search by meaning and new lecture pages set up every week.</p>
-        <dl><dt>Claude</dt><dd>Claude API: chat over your notes, summaries, and tasks pulled out of lectures.</dd><dt>Status</dt><dd><span class="status">In use</span></dd></dl>
+        <dl><dt>Claude</dt><dd>Claude API: chat over your notes, summaries, and tasks pulled out of lectures.</dd></dl>
       </article>
       <article class="app">
         <h3>vidkit</h3>
         <p class="one">Turns a video into text an AI can read.</p>
         <p>A command-line tool that splits a video into a transcript with speakers, scene cuts, frames and chapters, with an export for Final Cut Pro.</p>
-        <dl><dt>Claude</dt><dd>The analysis runs in a Claude Code session.</dd><dt>Status</dt><dd><span class="status">In use</span></dd></dl>
+        <dl><dt>Claude</dt><dd>The analysis runs in a Claude Code session.</dd></dl>
       </article>
     </div>
   </div>
@@ -199,8 +198,8 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
       <h3><a href="https://hatachitachi.com">hatachitachi.com</a></h3>
       <p>Official site for an annual dance-film project run by twenty-year-olds. The team changes every year, so all updates happen in a simple CMS anyone can use.</p>
       <ul>
-        <li><span>Studio site for a dance production company</span><span class="status">In progress</span></li>
-        <li><span>Site renewal for a university volunteer group</span><span class="status">In progress</span></li>
+        <li><span>Studio site for a dance production company</span></li>
+        <li><span>Site renewal for a university volunteer group</span></li>
       </ul>
     </div>
   </div>
@@ -212,11 +211,11 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
     <p>Projects done for other people, newest first.</p>
   </div>
   <table class="work">
-    <thead><tr><th>Year</th><th>Type</th><th>Project</th><th>Status</th></tr></thead>
+    <thead><tr><th>Year</th><th>Type</th><th>Project</th></tr></thead>
     <tbody>
-      <tr><td>2026</td><td>Web</td><td><a href="https://hatachitachi.com">Official site for a youth dance-film project</a></td><td>Live</td></tr>
-      <tr><td>2026</td><td>Web</td><td>Studio site for a dance production company</td><td>In progress</td></tr>
-      <tr><td>2026</td><td>Web</td><td>Site renewal for a university volunteer group</td><td>In progress</td></tr>
+      <tr><td>2026</td><td>Web</td><td><a href="https://hatachitachi.com">Official site for a youth dance-film project</a></td></tr>
+      <tr><td>2026</td><td>Web</td><td>Studio site for a dance production company</td></tr>
+      <tr><td>2026</td><td>Web</td><td>Site renewal for a university volunteer group</td></tr>
     </tbody>
   </table>
 </section>

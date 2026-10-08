@@ -4,352 +4,291 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>OOO Studio</title>
-<meta name="description" content="OOO Studio builds software and video for creative teams in Tokyo: our own apps, client websites, and films for dance and stage, built with Claude.">
+<meta name="description" content="OOO Studio makes apps, websites and films for creative teams in Tokyo, built with Claude.">
 <meta property="og:title" content="OOO Studio">
-<meta property="og:description" content="Small tools, made by someone who uses them. Tokyo.">
-<meta property="og:image" content="https://ooo-studio.jp/img/film1.jpg">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#121211">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23e9e5dc' stroke-width='1.6'/%3E%3Ccircle cx='15' cy='5' r='4' fill='none' stroke='%23e9e5dc' stroke-width='1.6'/%3E%3Ccircle cx='25' cy='5' r='4' fill='%23ff5b39'/%3E%3C/svg%3E">
+<meta property="og:description" content="Apps, websites and films for creative teams in Tokyo.">
+<meta property="og:image" content="https://ooo-studio.jp/video/o1.jpg">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Ccircle cx='15' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Ccircle cx='25' cy='5' r='4' fill='%23e3262e'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Zen+Kaku+Gothic+New:wght@500&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"OOO Studio","url":"https://ooo-studio.jp","logo":"https://ooo-studio.jp/brand/logo.png","email":"yitao-ding@ooo-studio.jp","foundingDate":"2026-07","founder":{"@type":"Person","name":"Yitao Ding"},"address":{"@type":"PostalAddress","addressLocality":"Tokyo","addressCountry":"JP"},"sameAs":["https://www.instagram.com/yitao_film/","https://github.com/Yitao-Ding","https://yitao-ding.github.io/"]}</script>
 <style>
-:root{--bg:#121211;--fg:#e9e5dc;--mute:#8e8a82;--line:rgba(233,229,220,.13);--acc:#ff5b39;--lab:38px}
+:root{--paper:#fff;--ink:#000;--grey:#666;--line:#e6e6e6;--panel:#f2f2f2;--red:#e3262e;--pad:clamp(16px,4vw,56px)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--fg)}
-body{font:15px/1.6 "Helvetica Neue",Helvetica,Arial,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.mono,.bar,.tl,.kick,.st,dl,.cliphead,.edl{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
-a{color:inherit;text-underline-offset:3px}
-.bar{position:fixed;top:0;left:0;right:0;height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--line);background:var(--bg);z-index:10;font-size:12px}
-.bar .name{font-weight:500;letter-spacing:.02em}
-.bar .seq{color:var(--mute);margin-left:10px}
-.bar .tc{color:var(--acc);font-variant-numeric:tabular-nums}
-#scrub{position:relative}
-.stage{padding-top:40px}
-.js .stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column}
-.monitor{flex:1;min-height:0;display:flex;flex-direction:column;padding:18px 16px 10px}
-.frame{flex:1;min-height:0;position:relative;border:1px solid var(--line)}
-.pane{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:40px;align-items:center;padding:36px 40px;border-bottom:1px solid var(--line)}
-.js .pane{display:none;position:absolute;inset:0;border:0}
-.js .pane.on{display:grid}
-.pane.text-only{grid-template-columns:minmax(0,1fr)}
-.kick{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
-.st{color:var(--acc);margin-left:10px}
-.pane h1,.pane h2{font-weight:500;letter-spacing:-.015em;line-height:1.08;margin-bottom:18px}
-.pane h1{font-size:clamp(30px,4.6vw,64px);max-width:16ch}
-.pane h2{font-size:clamp(28px,3.6vw,50px)}
-.pane p{max-width:54ch;margin-bottom:14px}
-.pane p.sub{font-size:clamp(17px,1.6vw,21px);color:var(--fg);margin:-8px 0 18px}
-.pane p.small{color:var(--mute);font-size:14px}
-dl{font-size:12px;line-height:1.5;display:grid;grid-template-columns:64px 1fr;gap:4px 12px;margin-top:20px;max-width:60ch}
-dt{color:var(--mute)}
-.media{height:100%;min-height:0;display:flex;align-items:center;justify-content:center;gap:10px}
-.media img{display:block;max-width:100%;max-height:100%;min-height:0;object-fit:contain}
-.media.pair img{max-width:49%}
-.media .icon{width:150px;border-radius:34px}
-.offline{width:100%;aspect-ratio:16/9;max-height:100%;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:12px}
-.cliphead{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--mute);padding-top:8px;white-space:nowrap;overflow:hidden}
-.cliphead span:first-child{color:var(--fg)}
-.tl,.cliphead{display:none}
-.js .tl{display:block}.js .cliphead{display:flex}
-.tl{flex:none;border-top:1px solid var(--line);padding:8px 16px 14px;font-size:11px;user-select:none;-webkit-user-select:none}
-.tlhead{display:flex;justify-content:space-between;color:var(--mute);margin-bottom:6px}
-.tlhead .date{color:var(--fg);font-variant-numeric:tabular-nums}
-.grid{position:relative}
-.row{display:flex;height:30px;border-bottom:1px solid var(--line)}
-.row.ruler{height:22px}
-.row .lab{width:var(--lab);flex:none;color:var(--mute);display:flex;align-items:center}
-.lane{position:relative;flex:1}
-.tick{position:absolute;top:0;bottom:0;border-left:1px solid var(--line);padding-left:4px;color:var(--mute);font-size:10px;line-height:22px}
-.clip{position:absolute;top:4px;bottom:4px;min-width:7px;border:1px solid rgba(233,229,220,.32);background:rgba(233,229,220,.07);cursor:pointer;overflow:hidden;padding:0 6px;line-height:20px;white-space:nowrap;text-overflow:clip;color:var(--fg);font:inherit;text-align:left}
-.clip.film{background-color:#1d1c1a;background-size:auto 100%;background-repeat:repeat-x;color:#fff}
-.clip.film span{background:rgba(18,18,17,.7);padding:1px 4px}
-.clip.on{border-color:var(--fg);background-color:rgba(233,229,220,.18)}
-.clip.film.on{outline:1px solid var(--fg)}
-.clip.tight span{display:none}
-.ph{position:absolute;top:0;bottom:0;width:1px;background:var(--acc);pointer-events:none;left:var(--lab)}
-.ph::before{content:"";position:absolute;top:0;left:-5px;width:11px;height:12px;background:var(--acc);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%)}
-.below{max-width:1040px;margin:0 auto;padding:88px 16px 0}
-.below h3{font-size:11px;font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:400;margin-bottom:18px}
-.edl{font-size:12px;border-top:1px solid var(--line)}
-.edl .r{display:grid;grid-template-columns:44px 34px minmax(0,1fr) 84px 84px;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
-.edl .r.h{color:var(--mute)}
-.edl .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.edl.work .r{grid-template-columns:44px 44px minmax(0,1fr) 54px 96px}
-.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
-.about p{max-width:52ch;margin-bottom:14px}
-.about dl.org{margin-top:22px}
-footer{max-width:1040px;margin:88px auto 0;padding:18px 16px 32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:12px;color:var(--mute)}
-@media (max-width:760px){
-  :root{--lab:28px}
-  .bar .seq{display:none}
-  .monitor{padding:12px 12px 6px}
-  .pane,.js .pane.on{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:14px;padding:16px;align-items:start}
-  .pane.text-only,.js .pane.text-only.on{grid-template-rows:auto;align-content:center}
-  .pane .media{order:-1;max-height:30svh}
-  .media .icon{width:96px;border-radius:22px}
-  .pane h1{font-size:30px}.pane h2{font-size:26px;margin-bottom:10px}
-  .pane p.sub{font-size:16px;margin:-4px 0 10px}
-  .pane p{font-size:14px;line-height:1.55;margin-bottom:8px}
-  dl{grid-template-columns:52px 1fr;font-size:11px;margin-top:10px}
-  .kick{margin-bottom:8px}
-  .tl{padding:6px 12px 10px}
-  .row{height:24px}.clip{line-height:14px;font-size:10px;top:3px;bottom:3px}
-  .edl .r{grid-template-columns:34px 26px minmax(0,1fr) 70px;font-size:11px}
-  .edl .r .out{display:none}
-  .edl.work .r{grid-template-columns:30px 36px minmax(0,1fr) 40px}
-  .edl.work .nm{white-space:normal}
-  .about{grid-template-columns:minmax(0,1fr);gap:0}
+html{background:var(--paper);color:var(--ink);scroll-behavior:smooth}
+body{font-family:"Bricolage Grotesque","Zen Kaku Gothic New",system-ui,sans-serif;font-optical-sizing:auto;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{color:var(--red)}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+img,video{display:block;max-width:100%}
+.ja{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500}
+
+.nav{display:flex;justify-content:space-between;align-items:baseline;padding:20px var(--pad);font-size:16px}
+.nav .home{font-weight:700;text-decoration:none;letter-spacing:-.01em}
+.nav ul{display:flex;gap:clamp(14px,2.4vw,32px);list-style:none}
+.nav ul a{text-decoration:none}
+
+.hero{padding:clamp(28px,6vw,88px) var(--pad) clamp(56px,9vw,128px)}
+.mark{display:flex;align-items:flex-end;flex-wrap:wrap;gap:clamp(8px,1.6vw,22px);font-weight:400}
+.o{position:relative;width:clamp(86px,17vw,260px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:var(--panel);border:clamp(5px,.9vw,12px) solid var(--ink)}
+.o video,.o img{width:100%;height:100%;object-fit:cover}
+.o:nth-child(3){border-color:var(--red)}
+.word{font-size:clamp(60px,12.5vw,196px);font-weight:600;font-variation-settings:"wdth" 92;letter-spacing:-.035em;line-height:.74;margin-left:clamp(2px,.6vw,10px)}
+.lede{margin-top:clamp(28px,4vw,52px);max-width:22ch;font-size:clamp(28px,4vw,54px);font-weight:500;line-height:1.08;letter-spacing:-.025em}
+.lede-ja{margin-top:16px;font-size:clamp(15px,1.4vw,18px);color:var(--grey)}
+
+@media (prefers-reduced-motion:no-preference){
+  .o{animation:open .9s cubic-bezier(.2,.8,.2,1) both}
+  .o:nth-child(2){animation-delay:.12s}.o:nth-child(3){animation-delay:.24s}
+  .word{animation:rise .8s .42s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes open{from{transform:scale(.55);opacity:0}to{transform:none;opacity:1}}
+  @keyframes rise{from{transform:translateY(.25em);opacity:0}to{transform:none;opacity:1}}
 }
-@media (max-width:760px) and (max-height:700px){ .pane dl{display:none} }
-@media (hover:none){.keys{display:none}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"OOO Studio","url":"https://ooo-studio.jp","email":"yitao-ding@ooo-studio.jp","foundingDate":"2026-07","founder":{"@type":"Person","name":"Yitao Ding"},"address":{"@type":"PostalAddress","addressLocality":"Tokyo","addressCountry":"JP"},"sameAs":["https://www.instagram.com/yitao_film/","https://github.com/Yitao-Ding"]}</script>
+<style>
+.sec{padding:clamp(56px,8vw,112px) var(--pad);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:end;margin-bottom:clamp(32px,5vw,64px)}
+.sec-head h2{font-size:clamp(44px,7vw,104px);font-weight:600;font-variation-settings:"wdth" 92;letter-spacing:-.03em;line-height:.92}
+.sec-head p{max-width:46ch;font-size:clamp(17px,1.5vw,20px)}
+
+.apps{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(20px,2.4vw,36px)}
+.app h3{font-size:clamp(26px,2.6vw,38px);font-weight:600;letter-spacing:-.025em;line-height:1.05}
+.app .one{font-size:clamp(17px,1.4vw,19px);margin:6px 0 12px;max-width:40ch}
+.app p{max-width:58ch}
+.app dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin-top:14px;font-size:15px;max-width:58ch}
+.app dt{color:var(--grey)}
+.shot{background:var(--panel);border-radius:6px;overflow:hidden;margin-bottom:20px;display:flex;align-items:center;justify-content:center}
+.paa{grid-column:1 / span 5}
+.paa .shot{aspect-ratio:4/5;padding:6%;background:#f4f4f4}
+.paa .shot img{height:100%;width:auto;object-fit:contain}
+.globe{grid-column:6 / span 7}
+.globe .shot{aspect-ratio:16/11}
+.globe .shot img{width:100%;height:100%;object-fit:cover}
+.more{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,36px);padding-top:clamp(20px,3vw,40px);border-top:1px solid var(--line);margin-top:clamp(8px,1.5vw,20px)}
+.more .app h3{font-size:clamp(22px,2vw,28px)}
+.more .icon{width:56px;height:56px;border-radius:13px;margin-bottom:14px}
+.status{display:inline-block;font-size:14px;color:var(--grey)}
+.status::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ink);margin-right:7px;vertical-align:1px}
+.status.live::before{background:var(--red)}
+.status.paused::before{background:transparent;border:1px solid var(--ink)}
+
+.film-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
+.film-grid figure{position:relative;overflow:hidden;border-radius:4px;background:var(--panel)}
+.film-grid img{width:100%;height:100%;object-fit:cover}
+.f1{grid-column:1 / span 7;height:clamp(240px,34vw,500px)}
+.f2{grid-column:8 / span 5;height:clamp(240px,34vw,500px)}
+.f3{grid-column:1 / span 4;aspect-ratio:4/5}
+.f4{grid-column:5 / span 4;aspect-ratio:4/5}
+.f5{grid-column:9 / span 4;aspect-ratio:4/5}
+.mvs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(36px,5vw,64px)}
+.mv{text-decoration:none;display:block}
+.mv .th{aspect-ratio:16/9;border-radius:4px;overflow:hidden;background:var(--panel);margin-bottom:10px}
+.mv .th img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.mv:hover .th img{transform:scale(1.03)}
+.mv b{display:block;font-weight:600;line-height:1.3}
+.mv span{color:var(--grey);font-size:15px}
+.links{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:18px}
+</style>
+<style>
+.web{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,3vw,48px);align-items:start}
+.web .shot{aspect-ratio:16/10;margin:0}
+.web .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.web h3{font-size:clamp(24px,2.4vw,34px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+.web ul{list-style:none;margin-top:24px;border-top:1px solid var(--line)}
+.web li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}
+
+.work{width:100%;border-collapse:collapse;font-size:16px}
+.work th{text-align:left;font-weight:400;color:var(--grey);padding:0 16px 10px 0;font-size:15px}
+.work td{padding:14px 16px 14px 0;border-top:1px solid var(--line);vertical-align:top}
+.work td:first-child{width:72px;font-variant-numeric:tabular-nums;color:var(--grey)}
+.work td:nth-child(2){width:84px}
+.work td:last-child{width:130px;padding-right:0}
+
+.about{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);align-items:start}
+.about figure{border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--panel)}
+.about figure img{width:100%;height:100%;object-fit:cover}
+.about .big{font-size:clamp(24px,2.6vw,36px);font-weight:500;line-height:1.2;letter-spacing:-.02em;max-width:30ch;margin-bottom:24px}
+.about p{max-width:58ch;margin-bottom:14px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 22px;margin-top:28px;font-size:16px}
+.facts dt{color:var(--grey)}
+
+.contact{padding:clamp(72px,10vw,150px) var(--pad);border-top:1px solid var(--line)}
+.contact p{font-size:clamp(18px,1.6vw,22px);margin-bottom:14px}
+.contact a.mail{font-size:clamp(28px,6vw,92px);font-weight:600;font-variation-settings:"wdth" 92;letter-spacing:-.03em;line-height:1;text-decoration:none;word-break:break-all}
+.contact a.mail:hover{color:var(--red)}
+footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;font-size:15px;color:var(--grey);border-top:1px solid var(--line)}
+
+@media (max-width:820px){
+  .nav ul{gap:14px;font-size:15px}
+  .sec-head,.web,.about{grid-template-columns:minmax(0,1fr)}
+  .paa,.globe{grid-column:1 / -1}
+  .paa .shot{aspect-ratio:1/1}
+  .more{grid-template-columns:minmax(0,1fr)}
+  .f1,.f2{grid-column:1 / -1}
+  .f1,.f2{height:auto;aspect-ratio:4/3}
+  .f3,.f4,.f5{grid-column:span 4}
+  .mvs{grid-template-columns:minmax(0,1fr)}
+  .work td:nth-child(2),.work th:nth-child(2){display:none}
+  .work td:last-child{width:auto}
+  .about figure{max-width:320px}
+}
+@media (max-width:480px){.nav{font-size:15px}.nav ul{gap:12px}.f3,.f4,.f5{grid-column:span 6}.f5{display:none}}
+</style>
 </head>
 <body>
-<header class="bar">
-  <div><span class="name">OOO Studio</span><span class="seq">seq_01 / Tokyo</span></div>
-  <div class="tc" id="tc">00:00:00:00</div>
-</header>
+<nav class="nav" aria-label="Main">
+  <a class="home" href="#top">OOO Studio</a>
+  <ul><li><a href="#apps">Apps</a></li><li><a href="#film">Film</a></li><li><a href="#web">Web</a></li><li><a href="#contact">Contact</a></li></ul>
+</nav>
 
-<main id="scrub">
-<div class="stage">
-<section class="monitor">
-<div class="frame">
-
-<article class="pane text-only" data-in="2026-04-15" data-out="2026-04-21">
-  <div class="txt">
-    <div class="kick">OOO Studio, Tokyo / Software and video for creative teams</div>
-    <h1>Small tools, made by someone who uses them.</h1>
-    <p>OOO Studio builds software and video for creative teams in Tokyo: our own apps, websites for clients, and films for dance and stage. Claude is how we build all of it.</p>
-    <p class="small">This page is laid out like an edit. Scroll to move the playhead<span class="keys">, or press L to play</span>.</p>
-  </div>
-</article>
-
-<article class="pane" data-track="V2" data-name="yitao_film" data-in="2026-04-22" data-out="2026-05-15" data-thumb="img/film1.jpg">
-  <div class="txt">
-    <div class="kick">Yitao Film<span class="st">Photo and video</span></div>
-    <h2>Yitao Film</h2>
-    <p>The other half of the studio. Dance films, music videos and artist photos for the dance team Hi,Me:), and documentary work for an NPO. I shoot on an FX30 and an R5 and grade in DaVinci Resolve.</p>
-    <p><a href="https://yitao-ding.github.io/">Full portfolio</a> &nbsp;/&nbsp; <a href="https://www.instagram.com/yitao_film/">@yitao_film</a></p>
-  </div>
-  <div class="media pair"><img src="img/film1.jpg" alt="Artist photo for Hi,Me:), shot at night by a payphone"><img src="img/film3.jpg" alt="Two dancers on a rooftop in daylight"></div>
-</article>
-
-<article class="pane" data-track="V1" data-name="lecture_hub" data-in="2026-05-17" data-out="2026-07-06">
-  <div class="txt">
-    <div class="kick">2026.05<span class="st">Personal use</span></div>
-    <h2>Lecture Hub</h2>
-    <p class="sub">A notebook for university lectures</p>
-    <p>A Notion-style workspace for my university classes. Lecture notes, tasks and a chat in one place. Recordings are transcribed, every page is searchable by meaning, and new lecture pages set themselves up each week.</p>
-    <dl><dt>Claude</dt><dd>Claude API: chat over my notes, summaries, and pulling tasks out of lectures.</dd><dt>Stack</dt><dd>Next.js, Postgres + pgvector, TipTap, Whisper, Vercel</dd></dl>
-  </div>
-  <div class="media"><div class="offline">/tasks &nbsp; /p/[id] &nbsp; /search &nbsp; /chat</div></div>
-</article>
-
-<article class="pane" data-track="V1" data-name="vidkit" data-in="2026-05-18" data-out="2026-05-25">
-  <div class="txt">
-    <div class="kick">2026.05<span class="st">In use</span></div>
-    <h2>vidkit</h2>
-    <p class="sub">Turns a video into text Claude can read</p>
-    <p>A command-line tool that turns a video into something Claude Code can read: transcript with speakers, scene cuts, frames and chapters. Five modes (dance, lecture, autocut, tighten, tutorial), with FCPXML export for Final Cut Pro.</p>
-    <dl><dt>Claude</dt><dd>The analysis runs inside a Claude Code session. Claude Code also wrote most of the tool.</dd><dt>Stack</dt><dd>Python, MLX-Whisper, pyannote, ffmpeg</dd></dl>
-  </div>
-  <div class="media"><div class="offline">$ vidkit lecture &lt;url&gt; --speakers 2</div></div>
-</article>
-
-<article class="pane" data-track="V1" data-name="project_agent" data-in="2026-05-23" data-out="2026-10-07" data-ph="2026-08-31">
-  <div class="txt">
-    <div class="kick">2026.05 to now<span class="st">TestFlight, App Store prep</span></div>
-    <h2>Project Agent</h2>
-    <p class="sub">A team app for student groups</p>
-    <p>A team app for student groups: circles, seminars, volunteer teams. Work is organised as group, project, team and task, and when a project ends it stays as a record instead of sinking in a chat log. iOS, Japan first.</p>
-    <dl><dt>Claude</dt><dd>Built by a set of Claude Code agents with separate jobs (planning, building, QA, design review) that check each other's work.</dd><dt>Next</dt><dd>Claude API inside the app, starting with a written recap of each project when it closes.</dd><dt>Stack</dt><dd>Expo / React Native, Supabase</dd></dl>
-  </div>
-  <div class="media"><img src="img/paa.jpg" alt="Project Agent home screen showing today's tasks"></div>
-</article>
-
-<article class="pane" data-track="V1" data-name="bitaw" data-in="2026-09-01" data-out="2026-09-07">
-  <div class="txt">
-    <div class="kick">2026.09<span class="st">TestFlight, 3 users</span></div>
-    <h2>Bitaw</h2>
-    <p class="sub">Cebuano speaking practice</p>
-    <p>A Cebuano speaking app for me and two friends before a trip to Cebu. Type or say a sentence in Japanese and get natural Cebuano back, with its structure, pronunciation and audio. Pronunciation is scored on the phone.</p>
-    <dl><dt>Claude</dt><dd>Lessons and conversation practice are generated by Claude, today through a small relay on my Mac.</dd><dt>Next</dt><dd>Moving to the Claude API, so practice works without my Mac switched on.</dd><dt>Stack</dt><dd>Swift, WhisperKit, ElevenLabs, Supabase</dd></dl>
-  </div>
-  <div class="media"><img class="icon" src="img/bitaw.png" alt="Bitaw app icon"></div>
-</article>
-
-<article class="pane text-only" data-track="V2" data-name="manila_cebu" data-in="2026-09-23" data-out="2026-10-03" data-thumb="img/film2.jpg">
-  <div class="txt">
-    <div class="kick">2026.09<span class="st">In the edit</span></div>
-    <h2>Manila and Cebu</h2>
-    <p>Eleven days in the Philippines with a volunteer group and a dance team: workshops at schools and a children's home, a slum visit, and a lot of dance. The documentary is being cut now.</p>
-  </div>
-</article>
-
-<article class="pane" data-track="V1" data-name="news_globe" data-in="2026-10-05" data-out="2026-10-15" data-ph="2026-10-07">
-  <div class="txt">
-    <div class="kick">2026.10 to now<span class="st">In development</span></div>
-    <h2>News Globe</h2>
-    <p class="sub">The day's news, placed on a globe</p>
-    <p>A 3D globe that pins the day's world news where it happened, ordered like a newspaper front page. Map and satellite views, place names that stay sharp at any zoom. Original features are being added next.</p>
-    <dl><dt>Claude</dt><dd>Claude reads the RSS feeds, writes the summaries, sorts each story and works out where it happened.</dd><dt>Stack</dt><dd>CesiumJS, Natural Earth, Vite</dd></dl>
-  </div>
-  <div class="media"><img src="img/globe.jpg" alt="News Globe in satellite view over northern Iran"></div>
-</article>
-
-<article class="pane text-only" data-in="2026-10-07" data-out="2026-10-15">
-  <div class="txt">
-    <div class="kick">End of sequence</div>
-    <h2>That's the cut so far.</h2>
-    <p>Everything here is built and kept running by one person. New work gets added to the end of the timeline.</p>
-    <p><a href="mailto:yitao-ding@ooo-studio.jp">yitao-ding@ooo-studio.jp</a></p>
-  </div>
-</article>
-
-</div>
-<div class="cliphead"><span id="cn">intro</span><span id="io"></span></div>
+<main id="top">
+<section class="hero">
+  <h1 class="mark" aria-label="OOO Studio">
+    <span class="o"><video muted loop playsinline preload="metadata" poster="video/o1.jpg" aria-hidden="true"><source src="video/o1.mp4" type="video/mp4"></video></span>
+    <span class="o"><video muted loop playsinline preload="metadata" poster="video/o2.jpg" aria-hidden="true"><source src="video/o2.mp4" type="video/mp4"></video></span>
+    <span class="o"><video muted loop playsinline preload="metadata" poster="video/o3.jpg" aria-hidden="true"><source src="video/o3.mp4" type="video/mp4"></video></span>
+    <span class="word" aria-hidden="true">Studio</span>
+  </h1>
+  <p class="lede">We make apps, websites and films for creative teams in Tokyo.</p>
+  <p class="lede-ja ja">東京で、クリエイティブなチームのためのアプリ、サイト、映像をつくっています。</p>
 </section>
 
-<section class="tl" aria-hidden="true">
-  <div class="tlhead"><span class="date" id="date">26.04.15</span><span><span class="keys">J K L &nbsp;/&nbsp; </span>scroll</span></div>
-  <div class="grid" id="grid">
-    <div class="row ruler"><div class="lab"></div><div class="lane" id="ruler"></div></div>
-    <div id="rows"></div>
-    <div class="ph" id="ph"></div>
+<section class="sec" id="apps">
+  <div class="sec-head">
+    <h2>Apps</h2>
+    <p>Our own products. Claude Code writes and tests most of the code, and Claude runs inside the apps where a model does the work better than a form.</p>
+  </div>
+  <div class="apps">
+    <article class="app paa">
+      <div class="shot"><img src="img/paa.jpg" alt="Project Agent home screen with today's tasks for a student group" loading="lazy"></div>
+      <h3>Project Agent</h3>
+      <p class="one">A team app for student groups.</p>
+      <p>Circles, seminars and volunteer teams run several projects at once, and the work gets lost in group chats. Project Agent keeps it as group, project, team and task, and keeps a record once a project ends.</p>
+      <dl><dt>Claude</dt><dd>Built by Claude Code agents with separate jobs: planning, building, QA and design review. Next: Claude writes the project recap when a project closes.</dd><dt>Stack</dt><dd>Expo, React Native, Supabase</dd><dt>Status</dt><dd><span class="status live">TestFlight, App Store submission in progress</span></dd></dl>
+    </article>
+    <article class="app globe">
+      <div class="shot"><img src="img/globe.jpg" alt="News Globe in satellite view with place names over the Middle East" loading="lazy"></div>
+      <h3>News Globe</h3>
+      <p class="one">The day's world news, placed where it happened.</p>
+      <p>A 3D globe with the day's stories pinned to their locations and ranked like a front page. Switch between map and satellite, zoom in, and read the summary next to the place.</p>
+      <dl><dt>Claude</dt><dd>Reads the RSS feeds, writes the summaries, sorts each story and works out where it happened.</dd><dt>Stack</dt><dd>CesiumJS, Natural Earth, Vite</dd><dt>Status</dt><dd><span class="status">In development</span></dd></dl>
+    </article>
+    <div class="more">
+      <article class="app">
+        <img class="icon" src="img/bitaw.png" alt="" loading="lazy">
+        <h3>Bitaw</h3>
+        <p class="one">Cebuano speaking practice.</p>
+        <p>Type or say a sentence in Japanese and get natural Cebuano back, with its structure, pronunciation and audio. Pronunciation is scored on the phone.</p>
+        <dl><dt>Claude</dt><dd>Generates lessons and runs conversation practice. Moving to the Claude API next.</dd><dt>Status</dt><dd><span class="status live">TestFlight</span></dd></dl>
+      </article>
+      <article class="app">
+        <h3>Lecture Hub</h3>
+        <p class="one">A notebook for university lectures.</p>
+        <p>Notes, tasks and recordings for each class in one place, with search by meaning and new lecture pages set up every week.</p>
+        <dl><dt>Claude</dt><dd>Claude API: chat over your notes, summaries, and tasks pulled out of lectures.</dd><dt>Status</dt><dd><span class="status">In use</span></dd></dl>
+      </article>
+      <article class="app">
+        <h3>vidkit</h3>
+        <p class="one">Turns a video into text an AI can read.</p>
+        <p>A command-line tool that splits a video into a transcript with speakers, scene cuts, frames and chapters, with an export for Final Cut Pro.</p>
+        <dl><dt>Claude</dt><dd>The analysis runs in a Claude Code session.</dd><dt>Status</dt><dd><span class="status">In use</span></dd></dl>
+      </article>
+    </div>
   </div>
 </section>
-</div>
+
+<section class="sec" id="film">
+  <div class="sec-head">
+    <h2>Film</h2>
+    <p>Yitao Film is the studio's film and photo side: music videos and dance films, stage recordings, documentaries and artist photos. Shot on Sony FX30 and Canon R5, graded in DaVinci Resolve.</p>
+  </div>
+  <div class="film-grid">
+    <figure class="f1"><img src="img/p_hero_05.jpg" alt="Two dancers posing by a payphone at night, shot with flash" loading="lazy"></figure>
+    <figure class="f2"><img src="video/o2.jpg" alt="A dancer in a woven costume by the sea" loading="lazy"></figure>
+    <figure class="f3"><img src="img/p_work_12.jpg" alt="Dancer in a leather jacket at night" loading="lazy"></figure>
+    <figure class="f4"><img src="img/p_work_17.jpg" alt="Two dancers by a payphone" loading="lazy"></figure>
+    <figure class="f5"><img src="img/p_work_08.jpg" alt="Dancer sitting against a wall with a phone cord" loading="lazy"></figure>
+  </div>
+  <div class="mvs">
+    <a class="mv" href="https://www.youtube.com/watch?v=1tcuk5lkres"><div class="th"><img src="https://img.youtube.com/vi/1tcuk5lkres/maxresdefault.jpg" alt="" loading="lazy"></div><b>あたためますか？ / ずっと</b><span>Music video for Hi,Me:), 2025</span></a>
+    <a class="mv" href="https://www.youtube.com/watch?v=iZmdtR8Co74"><div class="th"><img src="https://img.youtube.com/vi/iZmdtR8Co74/maxresdefault.jpg" alt="" loading="lazy"></div><b>鏡に恋してる</b><span>Music video for Hi,Me:), 2025</span></a>
+    <a class="mv" href="https://www.youtube.com/watch?v=2Z2tjXXt5Ew"><div class="th"><img src="https://img.youtube.com/vi/2Z2tjXXt5Ew/maxresdefault.jpg" alt="" loading="lazy"></div><b>こだま</b><span>Music video for Hi,Me:), 2025</span></a>
+  </div>
+  <p class="links"><a href="https://yitao-ding.github.io/">Full portfolio</a><a href="https://www.instagram.com/yitao_film/">Instagram @yitao_film</a></p>
+</section>
+
+<section class="sec" id="web">
+  <div class="sec-head">
+    <h2>Web</h2>
+    <p>Websites for groups that need to look trustworthy to parents, venues and sponsors, and that a new team can update every year without help.</p>
+  </div>
+  <div class="web">
+    <a class="shot" href="https://hatachitachi.com"><img src="img/web_hatachi.jpg" alt="Top page of hatachitachi.com" loading="lazy"></a>
+    <div>
+      <h3><a href="https://hatachitachi.com">hatachitachi.com</a></h3>
+      <p>Official site for an annual dance-film project run by twenty-year-olds. The team changes every year, so all updates happen in a simple CMS anyone can use.</p>
+      <ul>
+        <li><span>Studio site for a dance production company</span><span class="status">In progress</span></li>
+        <li><span>Site renewal for a university volunteer group</span><span class="status">In progress</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="work">
+  <div class="sec-head">
+    <h2>Client work</h2>
+    <p>Projects done for other people, newest first.</p>
+  </div>
+  <table class="work">
+    <thead><tr><th>Year</th><th>Type</th><th>Project</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>2026</td><td>Film</td><td>Info-session and roundtable film for a youth dance-film project</td><td>In the edit</td></tr>
+      <tr><td>2026</td><td>Web</td><td><a href="https://hatachitachi.com">Official site for a youth dance-film project</a></td><td>Live</td></tr>
+      <tr><td>2026</td><td>Web</td><td>Studio site for a dance production company</td><td>In progress</td></tr>
+      <tr><td>2026</td><td>Film</td><td>Multi-camera recording and end credits for a stage production</td><td>Delivered</td></tr>
+      <tr><td>2026</td><td>Film</td><td>Documentary for a dance charity NPO</td><td>Delivered</td></tr>
+      <tr><td>2026</td><td>Web</td><td>Site renewal for a university volunteer group</td><td>In progress</td></tr>
+      <tr><td></td><td>Film</td><td>Opening film for a dance event</td><td>Delivered</td></tr>
+      <tr><td>2025</td><td>Film</td><td>Three music videos for Hi,Me:)</td><td>Delivered</td></tr>
+      <tr><td>2024</td><td>Photo</td><td>Artist photo series for dancers</td><td>Delivered</td></tr>
+      <tr><td>2023</td><td>Film</td><td>Live performance recordings for Hi,Me:)</td><td>Delivered</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="about">
+  <div class="about">
+    <figure><img src="img/p_about.jpg" alt="Yitao Ding with a camera in a strawberry greenhouse" loading="lazy"></figure>
+    <div>
+      <p class="big">OOO Studio is run by Yitao Ding, a filmmaker and developer in Tokyo.</p>
+      <p>I started with a camera, filming dance teams and stage productions. The apps came later, when parts of that work were slow enough that building a tool with Claude was quicker than doing it by hand. Now the studio does both, often for the same people.</p>
+      <p>I work in Japanese, Chinese and English.</p>
+      <dl class="facts"><dt>Studio</dt><dd>OOO Studio</dd><dt>Founder</dt><dd>Yitao Ding (丁一韜)</dd><dt>Based in</dt><dd>Tokyo, Japan</dd><dt>Started</dt><dd>July 2026</dd><dt>Film work</dt><dd>Yitao Film, since 2023</dd></dl>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <p>For a project, an app, or just to say hello:</p>
+  <a class="mail" href="mailto:yitao-ding@ooo-studio.jp">yitao-ding@ooo-studio.jp</a>
+</section>
 </main>
 
-<section class="below">
-  <h3>Edit decision list</h3>
-  <div class="edl" id="edl"></div>
-</section>
-
-<section class="below">
-  <h3>Client work</h3>
-  <div class="edl work">
-    <div class="r h"><span>#</span><span>TYPE</span><span>PROJECT</span><span>YEAR</span><span class="out">STATUS</span></div>
-    <div class="r"><span>001</span><span>WEB</span><span class="nm"><a href="https://hatachitachi.com">Official site for an annual youth dance-film project</a></span><span>2026</span><span class="out">Live</span></div>
-    <div class="r"><span>002</span><span>WEB</span><span class="nm">Studio site for a dance production company</span><span>2026</span><span class="out">In progress</span></div>
-    <div class="r"><span>003</span><span>WEB</span><span class="nm">Site renewal for a university volunteer group</span><span>2026</span><span class="out">In progress</span></div>
-    <div class="r"><span>004</span><span>FILM</span><span class="nm">Three music videos and artist photos for a dance team</span><span>2026</span><span class="out">Delivered</span></div>
-    <div class="r"><span>005</span><span>FILM</span><span class="nm">Multi-camera recording and end credits for a stage production</span><span>2026</span><span class="out">Delivered</span></div>
-    <div class="r"><span>006</span><span>FILM</span><span class="nm">Opening film for a dance event</span><span>2026</span><span class="out">Delivered</span></div>
-    <div class="r"><span>007</span><span>FILM</span><span class="nm">Documentary for a dance charity NPO</span><span>2026</span><span class="out">Delivered</span></div>
-    <div class="r"><span>008</span><span>FILM</span><span class="nm">Info-session film for a youth dance-film project</span><span>2026</span><span class="out">In the edit</span></div>
-  </div>
-</section>
-
-<section class="below about">
-  <div>
-    <h3>About</h3>
-    <p>OOO Studio is a one-person studio in Tokyo, run by Yitao Ding. It holds two things: the small AI tools listed above, and Yitao Film, the photo and video work.</p>
-    <p>I work in Japanese, Chinese and English.</p>
-    <dl class="org"><dt>Studio</dt><dd>OOO Studio</dd><dt>Founder</dt><dd>Yitao Ding (丁一韜)</dd><dt>Based in</dt><dd>Tokyo, Japan</dd><dt>Started</dt><dd>July 2026</dd><dt>Email</dt><dd><a href="mailto:yitao-ding@ooo-studio.jp">yitao-ding@ooo-studio.jp</a></dd></dl>
-  </div>
-  <div>
-    <h3>Contact</h3>
-    <p><a href="mailto:yitao-ding@ooo-studio.jp">yitao-ding@ooo-studio.jp</a></p>
-    <p><a href="https://www.instagram.com/yitao_film/">Instagram @yitao_film</a></p>
-  </div>
-</section>
-
-<footer><span>OOO Studio</span><span>Tokyo, 2026</span></footer>
+<footer><span>OOO Studio, Tokyo</span><span>2026</span></footer>
 
 <script>
 (function(){
-  var root=document.documentElement; root.classList.add('js');
-  var D=function(s){return Date.parse(s+'T00:00:00Z')};
-  var T0=D('2026-04-15'), T1=D('2026-10-15'), FPS=24, LEN=180*FPS;
-  var pct=function(t){return Math.max(0,Math.min(1,(t-T0)/(T1-T0)))};
-  var pad=function(n,w){n=String(n);while(n.length<(w||2))n='0'+n;return n};
-  var ymd=function(t){var d=new Date(t);return pad(d.getUTCFullYear()%100)+'.'+pad(d.getUTCMonth()+1)+'.'+pad(d.getUTCDate())};
-  var panes=[].slice.call(document.querySelectorAll('.pane'));
-  var scrub=document.getElementById('scrub'), ph=document.getElementById('ph'), grid=document.getElementById('grid');
-  var tc=document.getElementById('tc'), dateEl=document.getElementById('date'), cn=document.getElementById('cn'), io=document.getElementById('io');
-  var N=panes.length, cur=-1, clips=[];
-
-  var ruler=document.getElementById('ruler');
-  ['APR','MAY','JUN','JUL','AUG','SEP','OCT'].forEach(function(m,i){
-    var t=D('2026-'+pad(i+4)+'-01'); if(t<T0)t=T0;
-    var k=document.createElement('div'); k.className='tick'; k.style.left=(pct(t)*100)+'%'; k.textContent=m; ruler.appendChild(k);
-  });
-
-  var stops=panes.map(function(p){
-    var a=D(p.dataset.in), b=D(p.dataset.out);
-    return {a:a,b:b,e:p.dataset.ph?D(p.dataset.ph):b,name:p.dataset.name||'',kind:p.dataset.track||''};
-  });
-  var ends=[];
-  stops.forEach(function(s){
-    if(s.kind==='V1'){var l=0;while(ends[l]!==undefined&&ends[l]>s.a)l++;ends[l]=s.b;s.lane=l}
-  });
-  var nt=ends.length, rowsEl=document.getElementById('rows');
-  var mk=function(id,lab){rowsEl.insertAdjacentHTML('beforeend','<div class="row"><div class="lab">'+lab+'</div><div class="lane" id="'+id+'"></div></div>')};
-  mk('film','V'+(nt+1)); for(var l=nt-1;l>=0;l--)mk('t'+l,'V'+(l+1));
-  stops.forEach(function(s){s.track=s.kind==='V2'?'V'+(nt+1):s.kind?'V'+(s.lane+1):''});
-  stops.forEach(function(s,i){
-    var p=panes[i];
-    if(s.kind){
-      var c=document.createElement('button'); c.type='button';
-      c.className='clip'+(s.kind==='V2'?' film':'');
-      c.style.left=(pct(s.a)*100)+'%'; c.style.width=((pct(s.b)-pct(s.a))*100)+'%';
-      if(p.dataset.thumb) c.style.backgroundImage='url('+p.dataset.thumb+')';
-      c.innerHTML='<span>'+s.name+'</span>'; c.title=s.name;
-      c.addEventListener('click',function(){go(i)});
-      document.getElementById(s.kind==='V2'?'film':'t'+s.lane).appendChild(c); s.clip=c; clips.push(c);
-    }
-  });
-
-  var edl=document.getElementById('edl'), n=0;
-  edl.innerHTML='<div class="r h"><span>#</span><span>TRK</span><span>CLIP</span><span>IN</span><span class="out">OUT</span></div>';
-  stops.forEach(function(s){ if(!s.track)return; n++;
-    edl.insertAdjacentHTML('beforeend','<div class="r"><span>'+pad(n,3)+'</span><span>'+s.track+'</span><span class="nm">'+s.name.toUpperCase()+'</span><span>'+ymd(s.a)+'</span><span class="out">'+((s.name==='project_agent'||s.name==='news_globe')?'--':ymd(s.b))+'</span></div>');
-  });
-
-  function tight(){clips.forEach(function(c){c.classList.toggle('tight',c.offsetWidth<64)})}
-  function range(){var top=scrub.offsetTop, h=scrub.offsetHeight-innerHeight;return {top:top,h:Math.max(1,h)}}
-  function size(){scrub.style.height=(N*75+100)+'vh'; tight(); draw()}
-  function ease(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
-
-  function draw(){
-    var r=range(), p=Math.max(0,Math.min(1,(scrollY-r.top)/r.h));
-    var x=p*N, i=Math.min(N-1,Math.floor(x)), loc=Math.min(1,x-i), s=stops[i];
-    var t=s.a+(s.e-s.a)*ease(loc), q=pct(t);
-    ph.style.left='calc(var(--lab) + '+(q*100)+'% - '+q+' * var(--lab))';
-    var f=Math.round(p*LEN); tc.textContent=pad(Math.floor(f/(3600*FPS)))+':'+pad(Math.floor(f/(60*FPS))%60)+':'+pad(Math.floor(f/FPS)%60)+':'+pad(f%FPS);
-    dateEl.textContent=ymd(t);
-    if(i!==cur){
-      if(cur>=0){panes[cur].classList.remove('on'); if(stops[cur].clip)stops[cur].clip.classList.remove('on')}
-      panes[i].classList.add('on'); if(s.clip)s.clip.classList.add('on'); cur=i;
-      cn.textContent=s.name||(i===0?'intro':'end');
-      io.textContent=s.track?s.track+'  IN '+ymd(s.a)+'  OUT '+((s.name==='project_agent'||s.name==='news_globe')?'--':ymd(s.b)):'';
-    }
-  }
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function go(i){var r=range();stop();scrollTo({top:r.top+(i+.08)/N*r.h,behavior:reduce?'auto':'smooth'})}
-
-  var dir=0, raf=0, speed=0;
-  function loop(){speed=Math.min(speed+.25,7);scrollBy(0,dir*speed);var r=range();
-    if((dir>0&&scrollY>=r.top+r.h-1)||(dir<0&&scrollY<=r.top)){stop();return} raf=requestAnimationFrame(loop)}
-  function play(d){if(dir===d)return;stop();dir=d;speed=1;raf=requestAnimationFrame(loop)}
-  function stop(){dir=0;cancelAnimationFrame(raf)}
-  addEventListener('keydown',function(e){
-    if(e.metaKey||e.ctrlKey||e.altKey)return; var k=e.key.toLowerCase();
-    if(k==='l')play(1); else if(k==='j')play(-1); else if(k==='k'||k===' '&&dir){e.preventDefault();stop()}
-    else if(k==='arrowright'){e.preventDefault();go(Math.min(N-1,cur+1))}
-    else if(k==='arrowleft'){e.preventDefault();go(Math.max(0,cur-1))}
-  });
-  ['wheel','touchstart','mousedown'].forEach(function(ev){addEventListener(ev,function(){if(dir)stop()},{passive:true})});
-  addEventListener('scroll',function(){requestAnimationFrame(draw)},{passive:true});
-  addEventListener('resize',size);
-  size();
-  var h=location.hash.slice(1); if(h){stops.forEach(function(s,i){if(s.name===h){var r=range();scrollTo(0,r.top+(i+.3)/N*r.h);draw()}})}
-  stops.forEach(function(s,i){if(s.clip)s.clip.addEventListener('click',function(){history.replaceState(null,'','#'+s.name)})});
+  var vids=[].slice.call(document.querySelectorAll('.o video'));
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var play=function(v){var p=v.play(); if(p&&p.catch) p.catch(function(){});};
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?play(e.target):e.target.pause();});},{threshold:.2});
+    vids.forEach(function(v){v.preload='auto';io.observe(v);});
+  } else vids.forEach(play);
 })();
 </script>
 </body>

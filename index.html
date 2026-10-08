@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>OOO Studio</title>
-<meta name="description" content="OOO Studio makes apps, websites and films for creative teams in Tokyo, built with Claude.">
+<meta name="description" content="OOO Studio builds AI apps with Claude in Tokyo.">
 <meta property="og:title" content="OOO Studio">
-<meta property="og:description" content="Apps, websites and films for creative teams in Tokyo.">
-<meta property="og:image" content="https://ooo-studio.jp/video/o1.jpg">
+<meta property="og:description" content="AI apps built with Claude, in Tokyo.">
+<meta property="og:image" content="https://ooo-studio.jp/img/o_globe.jpg">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 10'%3E%3Ccircle cx='5' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Ccircle cx='15' cy='5' r='4' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3Ccircle cx='25' cy='5' r='4' fill='%23e3262e'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Zen+Kaku+Gothic+New:wght@500&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"OOO Studio","url":"https://ooo-studio.jp","logo":"https://ooo-studio.jp/brand/logo.png","email":"yitao-ding@ooo-studio.jp","foundingDate":"2026-07","founder":{"@type":"Person","name":"Yitao Ding"},"address":{"@type":"PostalAddress","addressLocality":"Tokyo","addressCountry":"JP"},"sameAs":["https://www.instagram.com/yitao_film/","https://github.com/Yitao-Ding","https://yitao-ding.github.io/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"OOO Studio","url":"https://ooo-studio.jp","logo":"https://ooo-studio.jp/brand/logo.png","email":"yitao-ding@ooo-studio.jp","foundingDate":"2026-07","founder":{"@type":"Person","name":"Yitao Ding"},"address":{"@type":"PostalAddress","addressLocality":"Tokyo","addressCountry":"JP"},"sameAs":["https://github.com/Yitao-Ding"]}</script>
 <style>
 :root{--paper:#fff;--ink:#000;--grey:#666;--line:#e6e6e6;--panel:#f2f2f2;--red:#e3262e;--pad:clamp(16px,4vw,56px)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -75,22 +75,6 @@ img,video{display:block;max-width:100%}
 .status.live::before{background:var(--red)}
 .status.paused::before{background:transparent;border:1px solid var(--ink)}
 
-.film-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
-.film-grid figure{position:relative;overflow:hidden;border-radius:4px;background:var(--panel)}
-.film-grid img{width:100%;height:100%;object-fit:cover}
-.f1{grid-column:1 / span 7;height:clamp(240px,34vw,500px)}
-.f2{grid-column:8 / span 5;height:clamp(240px,34vw,500px)}
-.f3{grid-column:1 / span 4;aspect-ratio:4/5}
-.f4{grid-column:5 / span 4;aspect-ratio:4/5}
-.f5{grid-column:9 / span 4;aspect-ratio:4/5}
-.mvs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(36px,5vw,64px)}
-.mv{text-decoration:none;display:block}
-.mv .th{aspect-ratio:16/9;border-radius:4px;overflow:hidden;background:var(--panel);margin-bottom:10px}
-.mv .th img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.mv:hover .th img{transform:scale(1.03)}
-.mv b{display:block;font-weight:600;line-height:1.3}
-.mv span{color:var(--grey);font-size:15px}
-.links{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 28px;font-size:18px}
 </style>
 <style>
 .web{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,3vw,48px);align-items:start}
@@ -107,7 +91,7 @@ img,video{display:block;max-width:100%}
 .work td:nth-child(2){width:84px}
 .work td:last-child{width:130px;padding-right:0}
 
-.about{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);align-items:start}
+.about{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
 .about figure{border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:var(--panel)}
 .about figure img{width:100%;height:100%;object-fit:cover}
 .about .big{font-size:clamp(24px,2.6vw,36px);font-weight:500;line-height:1.2;letter-spacing:-.02em;max-width:30ch;margin-bottom:24px}
@@ -127,33 +111,29 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
   .paa,.globe{grid-column:1 / -1}
   .paa .shot{aspect-ratio:1/1}
   .more{grid-template-columns:minmax(0,1fr)}
-  .f1,.f2{grid-column:1 / -1}
-  .f1,.f2{height:auto;aspect-ratio:4/3}
-  .f3,.f4,.f5{grid-column:span 4}
-  .mvs{grid-template-columns:minmax(0,1fr)}
   .work td:nth-child(2),.work th:nth-child(2){display:none}
   .work td:last-child{width:auto}
   .about figure{max-width:320px}
 }
-@media (max-width:480px){.nav{font-size:15px}.nav ul{gap:12px}.f3,.f4,.f5{grid-column:span 6}.f5{display:none}}
+@media (max-width:480px){.nav{font-size:15px}.nav ul{gap:12px}}
 </style>
 </head>
 <body>
 <nav class="nav" aria-label="Main">
   <a class="home" href="#top">OOO Studio</a>
-  <ul><li><a href="#apps">Apps</a></li><li><a href="#film">Film</a></li><li><a href="#web">Web</a></li><li><a href="#contact">Contact</a></li></ul>
+  <ul><li><a href="#apps">Apps</a></li><li><a href="#web">Web</a></li><li><a href="#contact">Contact</a></li></ul>
 </nav>
 
 <main id="top">
 <section class="hero">
   <h1 class="mark" aria-label="OOO Studio">
-    <span class="o"><video muted loop playsinline preload="metadata" poster="video/o1.jpg" aria-hidden="true"><source src="video/o1.mp4" type="video/mp4"></video></span>
-    <span class="o"><video muted loop playsinline preload="metadata" poster="video/o2.jpg" aria-hidden="true"><source src="video/o2.mp4" type="video/mp4"></video></span>
-    <span class="o"><video muted loop playsinline preload="metadata" poster="video/o3.jpg" aria-hidden="true"><source src="video/o3.mp4" type="video/mp4"></video></span>
+    <span class="o"><img src="img/o_paa.jpg" alt=""></span>
+    <span class="o"><img src="img/o_globe.jpg" alt=""></span>
+    <span class="o"><img src="img/o_bitaw.jpg" alt=""></span>
     <span class="word" aria-hidden="true">Studio</span>
   </h1>
-  <p class="lede">We make apps, websites and films for creative teams in Tokyo.</p>
-  <p class="lede-ja ja">東京で、クリエイティブなチームのためのアプリ、サイト、映像をつくっています。</p>
+  <p class="lede">We build AI apps with Claude, in Tokyo.</p>
+  <p class="lede-ja ja">東京で、Claude を使った AI アプリをつくっています。</p>
 </section>
 
 <section class="sec" id="apps">
@@ -200,25 +180,6 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
   </div>
 </section>
 
-<section class="sec" id="film">
-  <div class="sec-head">
-    <h2>Film</h2>
-    <p>Yitao Film is the studio's film and photo side: music videos and dance films, stage recordings, documentaries and artist photos. Shot on Sony FX30 and Canon R5, graded in DaVinci Resolve.</p>
-  </div>
-  <div class="film-grid">
-    <figure class="f1"><img src="img/p_hero_05.jpg" alt="Two dancers posing by a payphone at night, shot with flash" loading="lazy"></figure>
-    <figure class="f2"><img src="video/o2.jpg" alt="A dancer in a woven costume by the sea" loading="lazy"></figure>
-    <figure class="f3"><img src="img/p_work_12.jpg" alt="Dancer in a leather jacket at night" loading="lazy"></figure>
-    <figure class="f4"><img src="img/p_work_17.jpg" alt="Two dancers by a payphone" loading="lazy"></figure>
-    <figure class="f5"><img src="img/p_work_08.jpg" alt="Dancer sitting against a wall with a phone cord" loading="lazy"></figure>
-  </div>
-  <div class="mvs">
-    <a class="mv" href="https://www.youtube.com/watch?v=1tcuk5lkres"><div class="th"><img src="https://img.youtube.com/vi/1tcuk5lkres/maxresdefault.jpg" alt="" loading="lazy"></div><b>あたためますか？ / ずっと</b><span>Music video for Hi,Me:), 2025</span></a>
-    <a class="mv" href="https://www.youtube.com/watch?v=iZmdtR8Co74"><div class="th"><img src="https://img.youtube.com/vi/iZmdtR8Co74/maxresdefault.jpg" alt="" loading="lazy"></div><b>鏡に恋してる</b><span>Music video for Hi,Me:), 2025</span></a>
-    <a class="mv" href="https://www.youtube.com/watch?v=2Z2tjXXt5Ew"><div class="th"><img src="https://img.youtube.com/vi/2Z2tjXXt5Ew/maxresdefault.jpg" alt="" loading="lazy"></div><b>こだま</b><span>Music video for Hi,Me:), 2025</span></a>
-  </div>
-  <p class="links"><a href="https://yitao-ding.github.io/">Full portfolio</a><a href="https://www.instagram.com/yitao_film/">Instagram @yitao_film</a></p>
-</section>
 
 <section class="sec" id="web">
   <div class="sec-head">
@@ -246,28 +207,20 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
   <table class="work">
     <thead><tr><th>Year</th><th>Type</th><th>Project</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td>2026</td><td>Film</td><td>Info-session and roundtable film for a youth dance-film project</td><td>In the edit</td></tr>
       <tr><td>2026</td><td>Web</td><td><a href="https://hatachitachi.com">Official site for a youth dance-film project</a></td><td>Live</td></tr>
       <tr><td>2026</td><td>Web</td><td>Studio site for a dance production company</td><td>In progress</td></tr>
-      <tr><td>2026</td><td>Film</td><td>Multi-camera recording and end credits for a stage production</td><td>Delivered</td></tr>
-      <tr><td>2026</td><td>Film</td><td>Documentary for a dance charity NPO</td><td>Delivered</td></tr>
       <tr><td>2026</td><td>Web</td><td>Site renewal for a university volunteer group</td><td>In progress</td></tr>
-      <tr><td></td><td>Film</td><td>Opening film for a dance event</td><td>Delivered</td></tr>
-      <tr><td>2025</td><td>Film</td><td>Three music videos for Hi,Me:)</td><td>Delivered</td></tr>
-      <tr><td>2024</td><td>Photo</td><td>Artist photo series for dancers</td><td>Delivered</td></tr>
-      <tr><td>2023</td><td>Film</td><td>Live performance recordings for Hi,Me:)</td><td>Delivered</td></tr>
     </tbody>
   </table>
 </section>
 
 <section class="sec" id="about">
   <div class="about">
-    <figure><img src="img/p_about.jpg" alt="Yitao Ding with a camera in a strawberry greenhouse" loading="lazy"></figure>
     <div>
-      <p class="big">OOO Studio is run by Yitao Ding, a filmmaker and developer in Tokyo.</p>
-      <p>I started with a camera, filming dance teams and stage productions. The apps came later, when parts of that work were slow enough that building a tool with Claude was quicker than doing it by hand. Now the studio does both, often for the same people.</p>
+      <p class="big">OOO Studio is run by Yitao Ding in Tokyo.</p>
+      <p>Most of the apps here started as a problem in a team I was part of: a student volunteer group, a university class, a trip to Cebu. I build each one with Claude, then keep using it.</p>
       <p>I work in Japanese, Chinese and English.</p>
-      <dl class="facts"><dt>Studio</dt><dd>OOO Studio</dd><dt>Founder</dt><dd>Yitao Ding (丁一韜)</dd><dt>Based in</dt><dd>Tokyo, Japan</dd><dt>Started</dt><dd>July 2026</dd><dt>Film work</dt><dd>Yitao Film, since 2023</dd></dl>
+      <dl class="facts"><dt>Studio</dt><dd>OOO Studio</dd><dt>Founder</dt><dd>Yitao Ding (丁一韜)</dd><dt>Based in</dt><dd>Tokyo, Japan</dd><dt>Started</dt><dd>July 2026</dd></dl>
     </div>
   </div>
 </section>
@@ -280,16 +233,5 @@ footer{display:flex;justify-content:space-between;padding:20px var(--pad) 28px;f
 
 <footer><span>OOO Studio, Tokyo</span><span>2026</span></footer>
 
-<script>
-(function(){
-  var vids=[].slice.call(document.querySelectorAll('.o video'));
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var play=function(v){var p=v.play(); if(p&&p.catch) p.catch(function(){});};
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?play(e.target):e.target.pause();});},{threshold:.2});
-    vids.forEach(function(v){v.preload='auto';io.observe(v);});
-  } else vids.forEach(play);
-})();
-</script>
 </body>
 </html>
